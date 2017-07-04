@@ -74,7 +74,7 @@ gedit Makefile.config
 
 
 On Line 21, **uncomment** ``` OPENCV_VERSION := 3 ``` if you're using ``` OpenCV 3 ``` or above.
-If you aren't sure, try
+If you aren't sure, try this in another terminal
 ``` 
 $ python
 >>> import cv2
@@ -111,6 +111,39 @@ to
 LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib  /usr/lib/x86_64-linux-gnu/hdf5/serial
 
 ```
+
+This should resolve hdf5 errors when running ``` make ```
+
+Now within the ``` caffe ``` directory, run the following one after the other
+
+```
+make all
+make run
+make runtest
+```
+
+These should run smoothly without any errors. If you do however, encounter errors, refer the ones at the end of this post or elsewhere to resolve them.
+
+**Make sure to remove build every time you resolve an error, and run those three commands again to rebuild.**
+
+**This is _VERY IMPORTANT_, otherwise the errors will persist.**
+
+**To remove build,**
+```
+rm -rf ./build*/
+
+```
+
+Once all three run without errors, while in the ``` caffe ``` directory type,
+``` make pycaffe ```
+This will build a python wrapper. You will also find a python folder within the caffe folder now. 
+
+To use caffe within python, export its path as
+
+```  export PYTHONPATH=~/Home/_username_/caffe/python:$PYTHONPATH ```
+
+Replace ``` _username_ ``` with the your username in the system. 
+
 
 
 
